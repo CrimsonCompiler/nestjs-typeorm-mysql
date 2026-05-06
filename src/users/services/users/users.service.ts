@@ -11,7 +11,9 @@ export class UsersService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  fetchUsers() {}
+  fetchUsers() {
+    return this.userRepository.find();
+  }
 
   createUser(userDetails: CreateUserParams) {
     const newUser = this.userRepository.create({
