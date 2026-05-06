@@ -13,5 +13,12 @@ export class UsersService {
 
   fetchUsers() {}
 
-  createUser(userDetails:CreateUserParams) {}
+  createUser(userDetails: CreateUserParams) {
+    const newUser = this.userRepository.create({
+      ...userDetails,
+      createdAt: new Date(),
+    });
+
+    return this.userRepository.save(newUser);
+  }
 }
