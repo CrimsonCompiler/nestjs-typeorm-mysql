@@ -1,98 +1,211 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS TypeORM MySQL
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A production-ready backend application built with NestJS, TypeORM, and MySQL. This project demonstrates best practices for building scalable, maintainable REST APIs with TypeScript.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 📋 Table of Contents
 
-## Description
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [API Endpoints](#api-endpoints)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🎯 Project Overview
 
-## Project setup
+This repository provides a complete backend solution using NestJS (a progressive Node.js framework), TypeORM (an ORM for TypeScript and JavaScript), and MySQL as the database. It serves as a template for building scalable microservices and REST APIs with proper architecture, validation, and error handling.
+
+## ✨ Features
+
+- **RESTful API** - Well-structured REST endpoints with proper HTTP methods
+- **Database ORM** - TypeORM for type-safe database operations
+- **Validation** - Input validation using class-validator decorators
+- **Error Handling** - Comprehensive error handling and custom exceptions
+- **Authentication** - JWT-based authentication support
+- **Logging** - Built-in logging service for debugging and monitoring
+- **Environment Configuration** - Configurable settings via environment variables
+- **Type Safety** - Full TypeScript support with strict mode
+- **Database Migrations** - TypeORM migration support for schema versioning
+
+## 🛠 Tech Stack
+
+- **Runtime**: Node.js
+- **Framework**: [NestJS](https://nestjs.com/) v10+
+- **Language**: TypeScript
+- **ORM**: [TypeORM](https://typeorm.io/)
+- **Database**: MySQL 8.0+
+- **Validation**: class-validator
+- **API Documentation**: Swagger/OpenAPI
+- **Package Manager**: npm / yarn
+
+## 📦 Installation
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- MySQL 8.0+
+
+### Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/nestjs-typeorm-mysql.git
+   cd nestjs-typeorm-mysql
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Update `.env` with your MySQL credentials:
+   ```env
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_USERNAME=root
+   DB_PASSWORD=your_password
+   DB_DATABASE=nestjs_db
+   JWT_SECRET=your_jwt_secret
+   ```
+
+4. **Create database**
+   ```bash
+   mysql -u root -p
+   CREATE DATABASE nestjs_db;
+   EXIT;
+   ```
+
+5. **Run migrations**
+   ```bash
+   npm run typeorm migration:run
+   ```
+
+6. **Start the application**
+   ```bash
+   npm run start
+   ```
+
+   Application will be available at `http://localhost:3000`
+
+## 🚀 Usage
+
+### Development
 
 ```bash
-$ npm install
+# Development mode with hot reload
+npm run start:dev
+
+# Debug mode
+npm run start:debug
 ```
 
-## Compile and run the project
+### Production
 
 ```bash
-# development
-$ npm run start
+# Build the project
+npm run build
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+# Start production server
+npm run start:prod
 ```
 
-## Run tests
+### Database Commands
 
 ```bash
-# unit tests
-$ npm run test
+# Generate new migration
+npm run typeorm migration:generate -- -n MigrationName
 
-# e2e tests
-$ npm run test:e2e
+# Create empty migration
+npm run typeorm migration:create -- -n MigrationName
 
-# test coverage
-$ npm run test:cov
+# Revert last migration
+npm run typeorm migration:revert
+
+# Show migrations
+npm run typeorm migration:show
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Testing
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Run unit tests
+npm run test
+
+# Run e2e tests
+npm run test:e2e
+
+# Test coverage
+npm run test:cov
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 📁 Project Structure
 
-## Resources
+```
+src/
+├── modules/
+│   ├── auth/
+│   │   ├── auth.service.ts
+│   │   ├── auth.controller.ts
+│   │   └── auth.module.ts
+│   ├── users/
+│   │   ├── entities/
+│   │   │   └── user.entity.ts
+│   │   ├── users.service.ts
+│   │   ├── users.controller.ts
+│   │   ├── dto/
+│   │   │   ├── create-user.dto.ts
+│   │   │   └── update-user.dto.ts
+│   │   └── users.module.ts
+│   └── [other modules]/
+├── common/
+│   ├── decorators/
+│   ├── filters/
+│   ├── guards/
+│   ├── interceptors/
+│   └── exceptions/
+├── database/
+│   ├── migrations/
+│   └── seeds/
+├── config/
+│   └── database.config.ts
+├── app.module.ts
+└── main.ts
+database/
+├── migrations/
+test/
+├── app.e2e-spec.ts
+└── jest-e2e.json
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+## 🔌 API Endpoints
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Authentication
+- `POST /auth/register` - Register new user
+- `POST /auth/login` - User login
+- `POST /auth/refresh` - Refresh JWT token
+- `POST /auth/logout` - User logout
 
-## Support
+### Users
+- `GET /users` - Get all users
+- `GET /users/:id` - Get user by ID
+- `POST /users` - Create new user
+- `PUT /users/:id` - Update user
+- `DELETE /users/:id` - Delete user
+- `GET /users/:id/profile` - Get user profile
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 📄 License
 
-## Stay in touch
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+**Made with ❤️ using NestJS & TypeORM**
