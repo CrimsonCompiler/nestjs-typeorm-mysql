@@ -16,6 +16,10 @@ export class UsersService {
     return this.userRepository.find();
   }
 
+  userDetails(id: number) {
+    return this.userRepository.findOne({ where: { id } });
+  }
+
   createUser(userDetails: CreateUserParams) {
     const newUser = this.userRepository.create({
       ...userDetails,
