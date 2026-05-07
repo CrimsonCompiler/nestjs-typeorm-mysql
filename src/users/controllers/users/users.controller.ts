@@ -12,6 +12,7 @@ import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
 import { UsersService } from 'src/users/services/users/users.service';
 import { UpdateUserDto } from '../../dtos/UpdateUser.dto';
 import { UpdateUserParams } from '../../../utils/types/user.types';
+import { CreateUserProfileDto } from 'src/users/dtos/CreateUserProfile.dto';
 
 @Controller('users')
 export class UsersController {
@@ -43,5 +44,14 @@ export class UsersController {
   @Delete(':id')
   async deleteUserById(@Param('id', ParseIntPipe) id: number) {
     await this.userService.deleteUser(id);
+  }
+
+  // Profiles
+  @Post(':id/profiles')
+  createUserProfiles(
+    @Param('id') id: number,
+    @Body() createUserProfileDto: CreateUserProfileDto,
+  ) {
+    return this.userService.createUserProfile(id, createUserProfileDto);
   }
 }
