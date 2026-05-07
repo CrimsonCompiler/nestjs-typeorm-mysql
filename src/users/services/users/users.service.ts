@@ -33,4 +33,8 @@ export class UsersService {
       { ...updateUserDetails },
     );
   }
+
+  deleteUser(id: number) {
+    return this.userRepository.delete({ id });
+  }
 }
